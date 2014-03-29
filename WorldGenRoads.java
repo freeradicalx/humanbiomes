@@ -21,7 +21,7 @@ public class WorldGenRoads implements IWorldGenerator{
 	long seed;
 	int width = -5; 								//change this line for wider or narrower highways. Width of highway == abs(width * 2)
 	int roadResolution = 3;							//controls how small each road segment is. 1 = 1 chunk
-	int roadScale = 64;								//number of chunks, on average, between road "vertices" (Where roads meet at intersections)
+	int roadScale = 20;								//number of chunks, on average, between road "vertices" (Where roads meet at intersections)
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World theWorld,
@@ -36,22 +36,27 @@ public class WorldGenRoads implements IWorldGenerator{
 		System.out.println(world.getBiomeGenForCoords((chunkX*16)+8, (chunkZ*16)+8));
 		
 		BiomeGenBase biome = world.getBiomeGenForCoords((chunkX*16)+8, (chunkZ*16)+8);
-		if(biome instanceof BiomeGenTest3){
-			switch(world.provider.dimensionId){
+		
+		switch(world.provider.dimensionId){
 			case 0: generateSurface(chunkX, chunkZ);
 			case 1: generateEnd(world, random, chunkX, chunkZ);
 			case -1: generateNether(world, random, chunkX, chunkZ);
-		}		
+		}
+		
+		//If you use this IF instead of the above switch:case, roads will only spawn in rural areas (BiomeGenTest3)
+		//if(biome instanceof BiomeGenTest3){
+		//	switch(world.provider.dimensionId){
+		//		case 0: generateSurface(chunkX, chunkZ);
+		//		case 1: generateEnd(world, random, chunkX, chunkZ);
+		//		case -1: generateNether(world, random, chunkX, chunkZ);
+		//	}
+		//}		
 	}
 		
-	}
 	private void generateNether(World world2, Random random, int chunkX, int chunkZ) {}
 	private void generateEnd(World world2, Random random, int chunkX, int chunkZ) {}
 	
 	private void generateSurface(int chunkX, int chunkZ) {
-
-		
-		//System.out.print("Starting gen on " + chunkX + "," + chunkZ + "... ");
 		
 		if(MinecraftServer.getServer().worldServers.length > 0){
 			seed = MinecraftServer.getServer().worldServers[0].getSeed();
@@ -64,7 +69,7 @@ public class WorldGenRoads implements IWorldGenerator{
 		int thisZ = (chunkZ * 16) + 8;
 		int thisY = ExtraUtils.groundHeight(world, thisX, thisZ);
 		
-		String nearbyRoads[] = processNearbyRoads(chunkX, chunkZ, BiomeListener.roadScale, true);
+		String nearbyRoads[] = processNearbyRoads(chunkX, chunkZ, roadScale, true);
 		
 		int roadCount = 0;
 		boolean[] counter = new boolean[4];
