@@ -2,6 +2,8 @@ package freeradicalx.humanbiomes;
 
 import java.util.Arrays;
 import java.util.Random;
+
+import ttftcuts.atg.api.ATGBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -13,7 +15,7 @@ public class BiomeGenTest extends BiomeGenBase{
 	public BiomeGenTest(int par1) {
 		super(par1);
         this.setBiomeName("Test Biome 1");
-		this.topBlock = (byte)Block.grass.blockID;
+		this.topBlock = (byte)Block.blockClay.blockID;
 		this.theBiomeDecorator.treesPerChunk = 0;
 		this.theBiomeDecorator.flowersPerChunk = 0;
 		this.theBiomeDecorator.deadBushPerChunk = 0;
@@ -27,6 +29,7 @@ public class BiomeGenTest extends BiomeGenBase{
         //System.out.println("x: " + x + " z: " + z);
         int X = x / 16;
         int Z = z / 16;
+        int tallness = par2Random.nextInt(50) + 20;
         //System.out.println("X: " + X + " Z: " + Z);
         
         int[] heightSamples = {
@@ -88,7 +91,7 @@ public class BiomeGenTest extends BiomeGenBase{
         		height = world.getHeightValue(x+16, z+16);
         	}
         	
-        	for (int yCount = 0; yCount < 20; yCount++){
+        	for (int yCount = 0; yCount < tallness + 30; yCount++){
 
         		if (yCount == 0){
         			for (int xCount = 0; xCount < 16; xCount++){
@@ -103,7 +106,7 @@ public class BiomeGenTest extends BiomeGenBase{
         				}
         			}
         		}
-        		if (yCount > 0 && yCount < 10){
+        		if (yCount > 0 && yCount < tallness){
         			for (int xCount = 0; xCount < 16; xCount++){
         				for (int zCount = 0; zCount < 16; zCount++){
         					if ((xCount == 2 || xCount == 13) && (zCount > 1 && zCount < 14)){
@@ -118,7 +121,7 @@ public class BiomeGenTest extends BiomeGenBase{
         				}
         			}
         		}
-        		if (yCount == 10){
+        		if (yCount == tallness){
         			for (int xCount = 0; xCount < 16; xCount++){
         				for (int zCount = 0; zCount < 16; zCount++){
         					if ((xCount > 1 && xCount < 14) && (zCount > 1 && zCount < 14)){
@@ -132,7 +135,7 @@ public class BiomeGenTest extends BiomeGenBase{
         				}
         			}
         		}
-        		if (yCount > 10){
+        		if (yCount > tallness){
         			for (int xCount = 0; xCount < 16; xCount++){
         				for (int zCount = 0; zCount < 16; zCount++){
     						if (world.getBlockId(x + xCount, height + yCount, z + zCount) != 0){

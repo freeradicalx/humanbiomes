@@ -2,6 +2,8 @@ package freeradicalx.humanbiomes;
 
 import java.util.Arrays;
 import java.util.Random;
+
+import ttftcuts.atg.api.ATGBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -13,7 +15,7 @@ public class BiomeGenTest3 extends BiomeGenBase{
 	public BiomeGenTest3(int par1) {
 		super(par1);
         this.setBiomeName("Test Biome 3");
-		this.topBlock = (byte)Block.sandStone.blockID;
+		this.topBlock = (byte)Block.grass.blockID;
 		this.theBiomeDecorator.treesPerChunk = 0;
 		this.theBiomeDecorator.flowersPerChunk = 0;
 		this.theBiomeDecorator.deadBushPerChunk = 0;
@@ -48,10 +50,11 @@ public class BiomeGenTest3 extends BiomeGenBase{
         	sum = sum + heightSamples[i];
         }
         int height = sum / heightSamples.length;
-        
+    }
     	//int height = (world.getHeightValue(x, z) + world.getHeightValue(x + 15, z) + world.getHeightValue(x, z + 15) + world.getHeightValue(x + 15, z + 15)) / 4;
 
     	//Buildings
+        /*
         if ( (X % 5 != 0 && Z % 6 != 0) && !(((Z+4) % 6 == 0 || (Z+3) % 6 == 0 || (Z+2) % 6 == 0) && ((X+3) % 5 == 0 || (X+2) % 5 == 0)) )
         {
         	Chunk chunk;
@@ -142,10 +145,12 @@ public class BiomeGenTest3 extends BiomeGenBase{
         			}
         		}
         	}
-        }
+        } */
+        
+        /*
         
         //East-west streets
-        if (X % 5 == 0 && Z % 6 != 0){
+        if (X % 16 == 0 && Z % 16 != 0){
         	
         	int eastHeight = (world.getHeightValue(x, z) + world.getHeightValue(x + 8, z) + world.getHeightValue(x + 15, z)) / 3;
         	int westHeight = (world.getHeightValue(x, z + 15) + world.getHeightValue(x + 8, z + 15) + world.getHeightValue(x + 15, z + 15)) / 3;
@@ -174,7 +179,7 @@ public class BiomeGenTest3 extends BiomeGenBase{
         }
         
         //North-south streets
-        if (X % 5 != 0 && Z % 6 == 0){
+        if (X % 16 != 0 && Z % 16 == 0){
         	
         	int northHeight = (world.getHeightValue(x, z) + world.getHeightValue(x, z + 8) + world.getHeightValue(x, z + 15)) / 3;
         	int southHeight = (world.getHeightValue(x + 15, z) + world.getHeightValue(x + 15, z + 8) + world.getHeightValue(x + 15, z + 15)) / 3;
@@ -204,7 +209,7 @@ public class BiomeGenTest3 extends BiomeGenBase{
         }
         
         //Intersections
-        if (X % 5 == 0 && Z % 6 == 0){
+        if (X % 16 == 0 && Z % 16 == 0){
 			for (int xCount = 0; xCount < 16; xCount++){
 				for (int zCount = 0; zCount < 16; zCount++){
 					world.setBlock(x + xCount, height, z + zCount, 35, 15, 3);
@@ -217,5 +222,6 @@ public class BiomeGenTest3 extends BiomeGenBase{
 			}
         }
     }
-	
+    
+    */
 }

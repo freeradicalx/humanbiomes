@@ -2,6 +2,8 @@ package freeradicalx.humanbiomes;
 
 import java.util.Arrays;
 import java.util.Random;
+
+import ttftcuts.atg.api.ATGBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
